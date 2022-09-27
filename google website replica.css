@@ -51,11 +51,11 @@ input:focus::-ms-placeholder{
     
 }
 
-#input-wrapper>img{
-    position: absolute;
-    top:-190px;
-    left: 1025px;
-    width: 25px;
+#mic{
+    position: relative;
+    top:-192px;
+    left: -34px;
+    width: 19px;
     height: 25px;
 }
 
@@ -192,6 +192,14 @@ input:focus{
     color: rgba(0,0,0,0.87);
     margin: 0;
     padding-top: 8px;
+}
+
+#yt{
+   margin-bottom: 10px;
+}
+
+#cal{
+    margin-bottom: -7px;
 }
 
 .app-items:hover{
