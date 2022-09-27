@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Guess Number</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap" rel="stylesheet">
@@ -85,45 +85,42 @@ button {
 </section>
 <script>
     let input = document.querySelector("#guess");
-    var generate = document.querySelector(".generate");
-    var submit = document.querySelector(".submit");
-    var randomNumber = null;
+    let generate = document.querySelector(".generate");
+    let submit = document.querySelector(".submit");
+    let randomNumber = null;
     let points = 100;
     let chance = 0;
     function generateNumber(e){
         randomNumber=Math.floor(Math.random() * 100) + 1;
         document.getElementById("status").innerHTML = "Guess the number";
-        
+        points = 100;
+        chance = 0;
         e.preventDefault();
     }
     function verifyGuess(e){
-        var guessedNumber=Number(input.value);
-        points = points - 1;
-        chance = chance + 1;
+        let guessedNumber=input.value;
         if(randomNumber == null){
             document.getElementById("status").innerHTML = "Please generate a random number";
-            points = 100;
-            chance = 0;
         }
-        else if(guessedNumber == undefined || guessedNumber == null || Number.isNaN(guessedNumber)){
+        else if(guessedNumber == undefined || guessedNumber == null){
             document.getElementById("status").innerHTML = "Please enter a valid number";
-            points = 100;
-            chance = 0;
-        }
-        else if( guessedNumber == randomNumber){
-            document.getElementById("status").innerHTML = `Congrats!You have entered the correct number in ${chance} guesses and your score is 
-          ${points}`;
-            randomNumber = null;
-            points = 100;
-            chance = 0;
-        }
-        else if( guessedNumber < randomNumber){
-            document.getElementById("status").innerHTML = "The number is less than the random number";
         }
         else{
-            document.getElementById("status").innerHTML = "The number is greater than the random number";
+            points = points - 1;
+            chance = chance + 1;
+            if( guessedNumber == randomNumber){
+                document.getElementById("status").innerHTML = `Congrats!You have entered the correct number in ${chance} guesses and your score is 
+            ${points}`;
+             randomNumber = null;
+            }
+            else if( guessedNumber < randomNumber){
+                document.getElementById("status").innerHTML = "The number is less than the random number";
+            }
+            else{
+                document.getElementById("status").innerHTML = "The number is greater than the random number";
+            }
         }
-        
+        input.value = null ;
         e.preventDefault();
     }
     generate.addEventListener("click",generateNumber);
